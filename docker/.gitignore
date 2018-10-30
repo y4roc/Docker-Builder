@@ -1,0 +1,12 @@
+/.env
+/.docker-sync
+/.docker-sync.yml.dist
+/.docker-compose.yml.dist
+/.docker-compose-dev.yml.dist
+/php7-fpm/Dockerfile
+/nginx/Dockerfile
+/nginx/symfony4.conf
+/nginx/silverstripe4.conf
+/logs/
+/data
+!/data/.gitignore
