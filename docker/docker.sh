@@ -24,7 +24,7 @@ while getopts "$optspec" optchar; do
 done
 
 
-function prepareFiles {
+prepareFiles () {
     FILES=("./data/.bash_history")
     FOLDERS=("~/.docker/composer", "~/.docker/cache", "~/.docker/config", "~/.docker/local")
     NGINX="./nginx"
@@ -86,7 +86,7 @@ function prepareFiles {
 }
 
 
-prepareFiles()
+prepareFiles
 
 source ./.env
 
