@@ -71,16 +71,20 @@ prepareFiles () {
     source ./.env
 
     sed "s/\$PROJECT/$PROJECT/g" ./docker-compose.yml.dist > ./docker-compose.yml
-    sed "s/\$PHP/$PHP/g" ./docker-compose.yml > ./docker-compose.yml
+    sed -i "s/\$PHP/$PHP/g" ./docker-compose.yml
     sed "s/\$PROJECT/$PROJECT/g" ./docker-compose-dev.yml.dist > ./docker-compose-dev.yml
-    sed "s/\$PHP/$PHP/g" ./docker-compose-dev.yml > ./docker-compose-dev.yml
+    sed -i "s/\$PHP/$PHP/g" ./docker-compose-dev.yml
+
+    if [ -f "$NGINX/default.conf.dist" ]; then
+        sed "s/\$PROJECT/$PROJECT/g" ./nginx/default.conf.dist > ./nginx/default.conf
+    fi
 
     if [ -f "$NGINX/symfony4.conf.dist" ]; then
-        sed "s/\$PROJECT/$PROJECT/g" ./nginx/symfony4.conf.dist > ./nginx/symfony4.conf
+        sed "s/\$PROJECT/$PROJECT/g" ./nginx/symfony4.conf.dist > ./nginx/default.conf
     fi
 
     if [ -f "$NGINX/silverstripe4.conf.dist" ]; then
-        sed "s/\$PROJECT/$PROJECT/g" ./nginx/silverstripe4.conf.dist > ./nginx/silverstripe4.conf
+        sed "s/\$PROJECT/$PROJECT/g" ./nginx/silverstripe4.conf.dist > ./nginx/default.conf
     fi
 
 }
