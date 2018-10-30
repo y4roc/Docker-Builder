@@ -1,2 +1,3 @@
+./.idea
 ./sql
 !./sql/.gitkeep
