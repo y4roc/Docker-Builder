@@ -71,7 +71,9 @@ function prepareFiles {
     source ./.env
 
     sed "s/\$PROJECT/$PROJECT/g" ./docker-compose.yml.dist > ./docker-compose.yml
+    sed "s/\$PHP/$PHP/g" ./docker-compose.yml > ./docker-compose.yml
     sed "s/\$PROJECT/$PROJECT/g" ./docker-compose-dev.yml.dist > ./docker-compose-dev.yml
+    sed "s/\$PHP/$PHP/g" ./docker-compose-dev.yml > ./docker-compose-dev.yml
 
     if [ -f "$NGINX/symfony4.conf.dist" ]; then
         sed "s/\$PROJECT/$PROJECT/g" ./nginx/symfony4.conf.dist > ./nginx/symfony4.conf
