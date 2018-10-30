@@ -1,0 +1,19 @@
+version: "2"
+options:
+  #compose-file-path: './docker-compose/docker-compose.yml'
+  compose-dev-file-path: './docker-compose-dev.yml'
+  verbose: true
+syncs:
+  $PROJECT-app-sync:
+    src: '../'
+    sync_strategy: 'native_osx'
+    sync_host_port: 10873
+    sync_userid: '33'
+    sync_args: '-prefer newer -copyonconflict'
+    sync_excludes:
+        - 'Path www/var/logs'
+        - 'Path www/var/log'
+        - 'Path www/var/sessions'
+        - 'Name .idea'
+        - 'Name sql'
+    sync_excludes_type: 'none'

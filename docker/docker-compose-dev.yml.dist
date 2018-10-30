@@ -1,0 +1,55 @@
+version: '2'
+
+services:
+    db:
+        container_name: "${PROJECT}_db"
+        hostname: "${PROJECT}_db"
+        image: "mysql:5.7"
+        volumes:
+            - "../sql/sql:/var/lib/mysql"
+            - "./mariadb/conf.d:/etc/mysql/conf.d"
+        environment:
+            MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+            MYSQL_DATABASE: ${MYSQL_DATABASE}
+            MYSQL_USER: ${MYSQL_USER}
+            MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+        ports:
+            - 3306:3306
+    php:
+        container_name: "${PROJECT}_php"
+        hostname: "${PROJECT}_php"
+        build:
+            context: php7-fpm
+            args:
+                TIMEZONE: ${TIMEZONE}
+        volumes:
+#            - $SSH_AUTH_SOCK:$SSH_AUTH_SOCK
+            - ./:/var/www/html/docker
+            - ~/.docker:/var/www/.host
+            - $PROJECT-app-sync:/var/www/html:nocopy
+        env_file:
+          - .env
+        environment:
+            - SSH_AUTH_SOCK=$SSH_AUTH_SOCK
+        ports:
+            - 9000
+    nginx:
+        container_name: "${PROJECT}_web"
+        hostname: "${PROJECT}_web"
+        build: nginx
+        ports:
+            - 8080:80
+            - 443:443
+        volumes_from:
+            - php
+        volumes:
+            - ./logs/nginx/:/var/log/nginx
+    mailcatcher:
+        container_name: "${PROJECT}_mail"
+        image: yappabe/mailcatcher
+        ports:
+            - 1025:1025
+            - 1080:1080
+volumes:
+    $PROJECT-app-sync:
+        external: true
