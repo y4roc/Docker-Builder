@@ -58,11 +58,14 @@ prepareFiles () {
     esac
 
     if ! hash docker-sync 2>/dev/null; then
-        sed "s/\$USER_ID/$uid/g" ./php7-fpm/Dockerfile.dist > ./php7-fpm/Dockerfile
+        sed "s/\$USER_ID/$uid/g" ./php7.1-fpm/Dockerfile.dist > ./php7.1-fpm/Dockerfile
+        sed "s/\$USER_ID/$uid/g" ./php7.2-fpm/Dockerfile.dist > ./php7.2-fpm/Dockerfile
         sed "s/\$USER_ID/$uid/g" ./nginx/Dockerfile.dist > ./nginx/Dockerfile
     else
-        sed "s/\$USER_ID/33/g" ./php7-fpm/Dockerfile.dist > ./php7-fpm/Dockerfile
-        sed -i "s/\$HOST_IP/$host_ip/g" ./php7-fpm/Dockerfile
+        sed "s/\$USER_ID/33/g" ./php7.1-fpm/Dockerfile.dist > ./php7.1-fpm/Dockerfile
+        sed -i "s/\$HOST_IP/$host_ip/g" ./php7.1-fpm/Dockerfile
+        sed "s/\$USER_ID/33/g" ./php7.2-fpm/Dockerfile.dist > ./php7.2-fpm/Dockerfile
+        sed -i "s/\$HOST_IP/$host_ip/g" ./php7.2-fpm/Dockerfile
         sed "s/\$USER_ID/33/g" ./nginx/Dockerfile.dist > ./nginx/Dockerfile
     fi
 
@@ -71,9 +74,8 @@ prepareFiles () {
     source ./.env
 
     sed "s/\$PROJECT/$PROJECT/g" ./docker-compose.yml.dist > ./docker-compose.yml
-    sed -i "s/\$PHP/$PHP/g" ./docker-compose.yml
     sed "s/\$PROJECT/$PROJECT/g" ./docker-compose-dev.yml.dist > ./docker-compose-dev.yml
-    sed -i "s/\$PHP/$PHP/g" ./docker-compose-dev.yml
+    sed "s/\$PROJECT/$PROJECT/g" ./docker-sync.yml.dist > ./docker-sync.yml
 
     if [ -f "$NGINX/default.conf.dist" ]; then
         sed "s/\$PROJECT/$PROJECT/g" ./nginx/default.conf.dist > ./nginx/default.conf
@@ -86,6 +88,8 @@ prepareFiles () {
     if [ -f "$NGINX/silverstripe4.conf.dist" ]; then
         sed "s/\$PROJECT/$PROJECT/g" ./nginx/silverstripe4.conf.dist > ./nginx/default.conf
     fi
+
+    sleep 2
 
 }
 

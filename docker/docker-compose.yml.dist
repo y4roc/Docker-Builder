@@ -20,7 +20,7 @@ services:
         container_name: "${PROJECT}_php"
         hostname: "${PROJECT}_php"
         build:
-            context: php7.2-fpm
+            context: "php$PHP-fpm"
             args:
                 TIMEZONE: ${TIMEZONE}
         volumes:

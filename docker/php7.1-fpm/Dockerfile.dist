@@ -64,7 +64,7 @@ RUN curl -sL https://deb.nodesource.com/setup_6.x | bash - \
     && apt-get update && apt-get install -y yarn nodejs
 
 COPY php.ini /usr/local/etc/php/
-COPY ../bashrc.dist /var/www/.bashrc
+COPY bashrc.dist /var/www/.bashrc
 
 RUN ln -s /var/www/.host/composer /var/www/.composer
 RUN ln -s /var/www/.host/local /var/www/.local
