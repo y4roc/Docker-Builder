@@ -1,0 +1,14 @@
+before_script:
+        - docker stop $(docker ps -a -q) && docker rm $(docker ps -a -q)
+after_script:
+#        - docker exec ci_db bash -c "rm -rf /var/lib/mysql"
+        - docker-compose stop -f docker/docker-compose-ci.yml
+phpunit:
+    stage: test
+    tags:
+        - docker
+    only:
+        - master
+    script:
+        - cp docker/.env.dist docker/.env
+        - cd docker; bash docker.sh
