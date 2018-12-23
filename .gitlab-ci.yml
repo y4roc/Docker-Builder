@@ -1,7 +1,7 @@
 before_script:
 - docker stop $(docker ps -a -q) && docker rm $(docker ps -a -q)
 after_script:
-- docker-compose stop -f docker/docker-compose.yml
+- cd docker; docker-compose stop
 
 docker_php7.1_sf:
     stage: test
@@ -15,7 +15,7 @@ docker_php7.1_sf:
     - bash -c 'sed -i "s/.\/logs\/nginx\//\/tmp\/nginx/g" docker/docker-compose.yml.dist'
     - cd docker; bash docker.sh -d
     - docker exec -i -u www-data np_php bash -c "cd ../; rm -rf www; composer create-project symfony/website-skeleton www"
-    - docker-compose stop -f docker/docker-compose.yml
+    - cd docker; docker-compose stop
     - rm docker/nginx default.conf.dist silverstripe4.conf.dist
     - cd docker; bash docker.sh -d
 
@@ -32,6 +32,6 @@ docker_php7.2_sf:
     - bash -c 'sed -i "s/\- .\/logs\/nginx\//tmp\/nginx/g" docker/docker-compose.yml.dist'
     - cd docker; bash docker.sh -d
     - docker exec -i -u www-data np_php bash -c "cd ../; rm -rf www; composer create-project symfony/website-skeleton www"
-    - docker-compose stop -f docker/docker-compose.yml
+    - cd docker; docker-compose stop
     - rm docker/nginx default.conf.dist silverstripe4.conf.dist
     - cd docker; bash docker.sh -d
