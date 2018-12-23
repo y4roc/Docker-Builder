@@ -17,7 +17,7 @@ docker_php7.1_sf:
     - bash docker.sh -d
     - docker exec -i -u www-data np_php bash -c "cd ../; rm -rf www; composer create-project symfony/website-skeleton www"
     - docker-compose stop
-    - rm docker/nginx default.conf.dist silverstripe4.conf.dist
+    - rm nginx/default.conf.dist nginx/silverstripe4.conf.dist
     - bash docker.sh -d
 
 docker_php7.2_sf:
@@ -35,5 +35,5 @@ docker_php7.2_sf:
     - bash docker.sh -d
     - docker exec -i -u www-data np_php bash -c "cd ../; rm -rf www; composer create-project symfony/website-skeleton www"
     - docker-compose stop
-    - rm docker/nginx default.conf.dist silverstripe4.conf.dist
+    - rm nginx/default.conf.dist nginx/silverstripe4.conf.dist
     - bash docker.sh -d
