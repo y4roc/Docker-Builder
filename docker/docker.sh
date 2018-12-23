@@ -26,7 +26,7 @@ done
 
 prepareFiles () {
     FILES=("./data/.bash_history")
-    FOLDERS=("~/.docker/composer", "~/.docker/cache", "~/.docker/config", "~/.docker/local", "./data")
+    FOLDERS=("~/.docker/composer", "~/.docker/cache", "~/.docker/config", "~/.docker/local", "data")
     NGINX="./nginx"
 
     if [ ! -e ./.env ]; then
