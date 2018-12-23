@@ -1,14 +1,27 @@
 before_script:
-        - docker stop $(docker ps -a -q) && docker rm $(docker ps -a -q)
+- docker stop $(docker ps -a -q) && docker rm $(docker ps -a -q)
 after_script:
-#        - docker exec ci_db bash -c "rm -rf /var/lib/mysql"
-        - docker-compose stop -f docker/docker-compose-ci.yml
-phpunit:
+- docker-compose stop -f docker/docker-compose-ci.yml
+
+docker_php7.1:
     stage: test
     tags:
-        - docker
+    - docker
     only:
-        - master
+    - master
     script:
-        - cp docker/.env.dist docker/.env
-        - cd docker; bash docker.sh
+    - cp docker/.env.dist docker/.env
+    - cd docker; bash docker.sh -d
+    - docker exec -i -u www-data php "cd ../; rm -rf www; composer create-project symfony/website-skeleton www"
+
+docker_php7.2:
+    stage: test
+    tags:
+    - docker
+    only:
+    - master
+    script:
+    - cp docker/.env.dist docker/.env
+    - bash -c 'sed -i "s/\7.1/7.2/g" docker/.env'
+    - cd docker; bash docker.sh -d
+    - docker exec -i -u www-data php "cd ../; rm -rf www; composer create-project symfony/website-skeleton www"
