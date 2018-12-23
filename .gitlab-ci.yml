@@ -20,6 +20,9 @@ docker_php7.1_sf:
     - rm nginx/default.conf.dist nginx/silverstripe4.conf.dist
     - bash docker.sh -d
     - docker exec -i -u www-data np_php bash -c "php bin/phpunit"
+    - docker exec -i -u www-data np_php bash -c "composer require encore"
+    - docker exec -i -u www-data np_php bash -c "yarn install"
+    - docker exec -i -u www-data np_php bash -c "yarn build"
 
 docker_php7.2_sf:
     stage: test
@@ -39,3 +42,6 @@ docker_php7.2_sf:
     - rm nginx/default.conf.dist nginx/silverstripe4.conf.dist
     - bash docker.sh -d
     - docker exec -i -u www-data np_php bash -c "php bin/phpunit"
+    - docker exec -i -u www-data np_php bash -c "composer require encore"
+    - docker exec -i -u www-data np_php bash -c "yarn install"
+    - docker exec -i -u www-data np_php bash -c "yarn build"
