@@ -118,6 +118,8 @@ docker cp --follow-link ~/.ssh $containerName:/var/www/
 
 ##make ssh files accessable for www-data
 docker exec -it $containerName chown -R www-data:www-data /var/www/.ssh
+docker exec -it $containerName chown -R www-data:www-data /var/www/.host
+docker exec -it $containerName chown -R www-data:www-data /var/www/.docker
 
 ##composer selfupdate
 docker exec -it $containerName composer selfupdate
