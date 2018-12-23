@@ -1,9 +1,9 @@
 before_script:
 - docker stop $(docker ps -a -q) && docker rm $(docker ps -a -q)
 after_script:
-- docker-compose stop -f docker/docker-compose-ci.yml
+- docker-compose stop -f docker/docker-compose.yml
 
-docker_php7.1:
+docker_php7.1_sf:
     stage: test
     tags:
     - docker
@@ -12,9 +12,12 @@ docker_php7.1:
     script:
     - cp docker/.env.dist docker/.env
     - cd docker; bash docker.sh -d
-    - docker exec -i -u www-data php "cd ../; rm -rf www; composer create-project symfony/website-skeleton www"
+    - docker exec -i -u www-data np_php "cd ../; rm -rf www; composer create-project symfony/website-skeleton www"
+    - docker-compose stop -f docker/docker-compose.yml
+    - rm docker/nginx default.conf.dist silverstripe4.conf.dist
+    - cd docker; bash docker.sh -d
 
-docker_php7.2:
+docker_php7.2_sf:
     stage: test
     tags:
     - docker
@@ -24,4 +27,7 @@ docker_php7.2:
     - cp docker/.env.dist docker/.env
     - bash -c 'sed -i "s/\7.1/7.2/g" docker/.env'
     - cd docker; bash docker.sh -d
-    - docker exec -i -u www-data php "cd ../; rm -rf www; composer create-project symfony/website-skeleton www"
+    - docker exec -i -u www-data np_php "cd ../; rm -rf www; composer create-project symfony/website-skeleton www"
+    - docker-compose stop -f docker/docker-compose.yml
+    - rm docker/nginx default.conf.dist silverstripe4.conf.dist
+    - cd docker; bash docker.sh -d

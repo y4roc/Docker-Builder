@@ -115,7 +115,6 @@ containerName="${PROJECT}_php"
 
 ##add ssh folder to enable access to private repos
 docker cp --follow-link ~/.ssh $containerName:/var/www/
-docker exec $containerName chown -R www-data /var/www/.ssh
 
 ##make ssh files accessable for www-data
 docker exec -it $containerName chown -R www-data:www-data /var/www/.ssh
