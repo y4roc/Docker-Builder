@@ -7,8 +7,8 @@ services:
         hostname: "${PROJECT}_db"
         image: "mysql:5.7"
         volumes:
-            - "../sql:/var/lib/mysql"
-            - "./mariadb/conf.d:/etc/mysql/conf.d"
+            - ../sql:/var/lib/mysql
+            - ./mariadb/conf.d:/etc/mysql/conf.d
         environment:
             MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
             MYSQL_DATABASE: ${MYSQL_DATABASE}
