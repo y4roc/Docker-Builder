@@ -12,7 +12,7 @@ docker_php7.1_sf:
     script:
     - cp docker/.env.dist docker/.env
     - bash -c 'sed -i "/\- ..\/sql:\/var\/lib\/mysql/d" docker/docker-compose.yml.dist'
-    - bash -c 'sed -i "/\- .\/logs\/nginx\/:\/var\/log\/nginx/d" docker/docker-compose.yml.dist'
+    - bash -c 'sed -i "s/\- .\/logs\/nginx\/:\/var\/log\/nginx/~/g" docker/docker-compose.yml.dist'
     - cd docker; bash docker.sh -d
     - docker exec -i -u www-data np_php "cd ../; rm -rf www; composer create-project symfony/website-skeleton www"
     - docker-compose stop -f docker/docker-compose.yml
@@ -29,7 +29,7 @@ docker_php7.2_sf:
     - cp docker/.env.dist docker/.env
     - bash -c 'sed -i "s/7.1/7.2/g" docker/.env'
     - bash -c 'sed -i "/\- ..\/sql:\/var\/lib\/mysql/d" docker/docker-compose.yml.dist'
-    - bash -c 'sed -i "/\- .\/logs\/nginx\/:\/var\/log\/nginx/d" docker/docker-compose.yml.dist'
+    - bash -c 'sed -i "s/\- .\/logs\/nginx\/:\/var\/log\/nginx/~/g" docker/docker-compose.yml.dist'
     - cd docker; bash docker.sh -d
     - docker exec -i -u www-data np_php "cd ../; rm -rf www; composer create-project symfony/website-skeleton www"
     - docker-compose stop -f docker/docker-compose.yml
