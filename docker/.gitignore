@@ -3,10 +3,6 @@
 docker-sync.yml
 docker-compose.yml
 docker-compose-dev.yml
-php7.1-fpm/Dockerfile
-php7.2-fpm/Dockerfile
-nginx/Dockerfile
-nginx/default.conf
 logs/
 data
 !/data/.gitignore

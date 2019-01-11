@@ -60,15 +60,18 @@ prepareFiles () {
     if ! hash docker-sync 2>/dev/null; then
         sed "s/\$USER_ID/$uid/g" ./php7.1-fpm/Dockerfile.dist > ./php7.1-fpm/Dockerfile
         sed "s/\$USER_ID/$uid/g" ./php7.2-fpm/Dockerfile.dist > ./php7.2-fpm/Dockerfile
+        sed "s/\$USER_ID/$uid/g" ./php7.2-fpm/Dockerfile.dist > ./php7.3-fpm/Dockerfile
         sed "s/\$USER_ID/$uid/g" ./nginx/Dockerfile.dist > ./nginx/Dockerfile
     else
         sed "s/\$USER_ID/33/g" ./php7.1-fpm/Dockerfile.dist > ./php7.1-fpm/Dockerfile
         sed "s/\$USER_ID/33/g" ./php7.2-fpm/Dockerfile.dist > ./php7.2-fpm/Dockerfile
+        sed "s/\$USER_ID/33/g" ./php7.2-fpm/Dockerfile.dist > ./php7.3-fpm/Dockerfile
         sed "s/\$USER_ID/33/g" ./nginx/Dockerfile.dist > ./nginx/Dockerfile
     fi
 
     sed -i '' "s/\$HOST_IP/$host_ip/g" ./php7.1-fpm/Dockerfile
     sed -i '' "s/\$HOST_IP/$host_ip/g" ./php7.2-fpm/Dockerfile
+    sed -i '' "s/\$HOST_IP/$host_ip/g" ./php7.3-fpm/Dockerfile
     sed "s/\$HOST_IP/$host_ip/g" ./.env.dist> ./.env
     source ./.env
 
