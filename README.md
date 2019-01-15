@@ -16,7 +16,7 @@ _Optional:_
 1. Clone this project and remove .git or download the archive and unpack it.
 2. Update or project shortcut at `/docker/.env.dist` (`PROJECT=np`).
 3. Choose your favorite PHP-Version in row three at the same file.
-4. Remove unused nginx-configs (`*.dist`) from `/nginx/`.
+4. Remove unused nginx-configs (`*.dist`) from `/docker/nginx/`.
 5. To start this docker-container go in the folder `docker` and run `./docker.sh -l`. The Argument `-l` logged you in this container.
 
 ## Open new Terminal.
