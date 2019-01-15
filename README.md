@@ -1,9 +1,24 @@
 # Docker Builder
 
-## Installation
+This docker configuration is designed for webapp based on PHP. It's includes composer to manage PHP-Libraries and node.js with yarn to manage JS-Libraries for frontend.
 
-1. Vor dem ersten Start des Docker Containers löscht man die Ordner `/.git` damit man nicht ausversehen dieses Repository auf dem BitBucket-Server überschreibt.
-2. Als nächstes bearbeitet man die Datei `/docker/.env.dist` und gibt den Projektname in der 2. Zeile an (`PROJECT=np`). 
-3. Anschließend wählt man eine PHP-Version in der man die 3. Zeile der selben Datei ändert (`PHP=7.1`).
-4. Zuletzt werden die `/nginx/*.dist` Konfig-Dateien gelöscht, welche nicht benötigt werden.
-5. Nun kann man das Project wie gewohnt mit `dcup` starten oder man führt die Datei `./docker.sh -l` im Ordner /docker aus.
+## Required
+
+- docker-ce
+- docker-compose
+
+_Optional:_
+
+- docker-sync (for OS X only)
+
+## Installation for new projects
+
+1. Clone this project and remove .git or download the archive and unpack it.
+2. Update or project shortcut at `/docker/.env.dist` (`PROJECT=np`).
+3. Choose your favorite PHP-Version in row three at the same file.
+4. Remove unused nginx-configs (`*.dist`) from `/nginx/`.
+5. To start this docker-container go in the folder `docker` and run `./docker.sh -l`. The Argument `-l` logged you in this container.
+
+## Open new Terminal.
+
+You can access the project-terminal with the script `/docker/docker-ssh-sh [username]`. The argument username is optional and can be used, to grant root rights. In default you will logged in with user `www-data`.  
