@@ -4,12 +4,12 @@ This docker configuration is designed for webapp based on PHP. It's includes com
 
 ## Required
 
-- docker-ce
-- docker-compose
+- [docker-ce](https://docs.docker.com/install/)
+- [docker-compose](https://docs.docker.com/compose/install/)
 
 _Optional:_
 
-- docker-sync (for OS X only)
+- [docker-sync](http://docker-sync.io/) (for OS X only)
 
 ## Installation for new projects
 
