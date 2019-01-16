@@ -17,6 +17,7 @@ RUN apt-get update && apt-get install -y \
     libmcrypt-dev \
     libpng-dev \
     make \
+    sendmail \
     libav-tools \
     gnupg \
     nodejs
