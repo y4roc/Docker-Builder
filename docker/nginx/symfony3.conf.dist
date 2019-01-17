@@ -1,6 +1,6 @@
 server {
 
-    server_name kataster.umwelt-online.docker aktuelless.umwelt-online.docker *.$PROJECT.docker $PROJECT.docker local.docker *.local.docker;
+    server_name *.$PROJECT.docker $PROJECT.docker local.docker *.local.docker;
     root /var/www/html/www/web;
 
    location / {
