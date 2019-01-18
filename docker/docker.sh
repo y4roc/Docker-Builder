@@ -88,6 +88,10 @@ prepareFiles () {
         sed "s/\$PROJECT/$PROJECT/g" ./nginx/silverstripe4.conf.dist > ./nginx/default.conf
     fi
 
+    if [ -f "$NGINX/silverstripe3.conf.dist" ]; then
+        sed "s/\$PROJECT/$PROJECT/g" ./nginx/silverstripe3.conf.dist > ./nginx/default.conf
+    fi
+
     sleep 2
 
 }
