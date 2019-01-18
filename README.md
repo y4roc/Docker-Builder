@@ -24,3 +24,20 @@ _Optional:_
 ## Open new Terminal
 
 You can access the project-terminal with the script `/docker/docker-ssh.sh [username]`. The argument username is optional and can be used, to grant root rights. In default you will logged in with user `www-data`.  
+
+## Debugging
+
+### For PhpStorm
+
+1. Open `Run/Debug Configuration` and add `PHP Remote Debug`.
+2. Choose a name for your configuration.
+3. Activate checkbox `Filter debug connection by IDE key`.
+4. Set `IDE key` to `PHPSTORM`.
+5. Open server-settings with click of the button `…`.
+6. Add a new server.configuration.
+7. Named the server `docker-localhost`.
+8. Set the host to `localhost` or the domain you choosed for your local docker-project.
+9. Set the port to 8080 and activate `Use path mappings`.
+10. Map the directory `www` to `/var/www/html/www` and save your configuration.
+
+Now you can use PhpStorm for debugging http-requests and cli-php-scripts on your docker-maschine.
