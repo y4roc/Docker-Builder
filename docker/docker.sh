@@ -92,6 +92,8 @@ prepareFiles () {
         sed "s/\$PROJECT/$PROJECT/g" ./nginx/silverstripe3.conf.dist > ./nginx/default.conf
     fi
 
+    sed "s/\$PHP/$PHP/g" ./docker-compose-dev.yml.dist > ./docker-compose-dev.yml
+    sed "s/\$PHP/$PHP/g" ./docker-compose.yml.dist > ./docker-compose.yml
     sleep 2
 
 }
