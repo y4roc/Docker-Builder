@@ -16,11 +16,11 @@ before_script:
     - sed -i "/\- ..\/sql:\/var\/lib\/mysql/d" docker/docker-compose.yml.dist
     - sed -i "s/.\/logs\/nginx\//\/tmp\/nginx/g" docker/docker-compose.yml.dist
     - cd docker
-    - sh ./docker.sh -d
+    - bash ./docker.sh -d
     - docker exec -i -u www-data np_php bash -c "cd ../; rm -rf www; composer create-project symfony/website-skeleton www"
     - docker-compose stop
     - rm nginx/default.conf.dist nginx/silverstripe4.conf.dist
-    - sh ./docker.sh -d
+    - bash ./docker.sh -d
     - docker exec -i -u www-data np_php bash -c "composer require encore"
 
 script:
