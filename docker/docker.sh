@@ -77,6 +77,7 @@ prepareFiles () {
     sed "s/\$PROJECT/$PROJECT/g" ./docker-compose-dev.yml.dist > ./docker-compose-dev.yml
     sed "s/\$PROJECT/$PROJECT/g" ./docker-sync.yml.dist > ./docker-sync.yml
     cat ./docker-compose.yml
+    echo $PHP
     sed -i "s/\$PHP/$PHP/g" ./docker-compose.yml
     sed -i "s/\$PHP/$PHP/g" ./docker-compose-dev.yml
     cat ./docker-compose.yml
