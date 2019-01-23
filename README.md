@@ -20,6 +20,7 @@ _Optional:_
 3. Choose your favorite PHP-Version in row three at the same file.
 4. Remove unused nginx-configs (`*.dist`) from `/docker/nginx/`.
 5. To start this docker-container go in the folder `docker` and run `./docker.sh -l`. The Argument `-l` logged you in this container.
+6. Run `composer` for to install your favourite framework & libraries
 
 ## Open new Terminal
 
