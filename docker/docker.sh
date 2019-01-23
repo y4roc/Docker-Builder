@@ -75,6 +75,8 @@ prepareFiles () {
     sed "s/\$PROJECT/$PROJECT/g" ./docker-compose.yml.dist > ./docker-compose.yml
     sed "s/\$PROJECT/$PROJECT/g" ./docker-compose-dev.yml.dist > ./docker-compose-dev.yml
     sed "s/\$PROJECT/$PROJECT/g" ./docker-sync.yml.dist > ./docker-sync.yml
+    sed -i "s/\$PHP/$PHP/g" ./docker-compose.yml
+    sed -i "s/\$PHP/$PHP/g" ./docker-compose-dev.yml
 
     if [ -f "$NGINX/default.conf.dist" ]; then
         sed "s/\$PROJECT/$PROJECT/g" ./nginx/default.conf.dist > ./nginx/default.conf
@@ -92,8 +94,6 @@ prepareFiles () {
         sed "s/\$PROJECT/$PROJECT/g" ./nginx/silverstripe3.conf.dist > ./nginx/default.conf
     fi
 
-    sed "s/\$PHP/$PHP/g" ./docker-compose-dev.yml.dist > ./docker-compose-dev.yml
-    sed "s/\$PHP/$PHP/g" ./docker-compose.yml.dist > ./docker-compose.yml
     sleep 2
 
 }
