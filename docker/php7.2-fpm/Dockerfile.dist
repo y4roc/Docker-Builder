@@ -40,10 +40,6 @@ RUN docker-php-ext-install -j$(nproc) iconv mbstring exif zip opcache pcntl \
     && docker-php-ext-configure intl \
     && docker-php-ext-install intl
 
-RUN pecl install mcrypt-1.0.1 \
-    && docker-php-ext-enable mcrypt
-
-
 # install xdebug
 RUN pecl install xdebug
 RUN docker-php-ext-enable xdebug
