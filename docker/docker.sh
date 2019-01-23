@@ -108,6 +108,8 @@ if [ $force = true ]; then
     docker stop $(docker ps -a -q) && docker rm $(docker ps -a -q)
 fi
 
+cat ./docker-compose.yml
+
 ##build and launch containers
 docker-compose build
 if ! hash docker-sync 2>/dev/null; then
