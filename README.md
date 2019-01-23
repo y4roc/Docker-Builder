@@ -2,7 +2,7 @@
 
 This docker configuration is designed for webapps based on PHP. It's includes [composer](https://getcomposer.org/doc/) to manage PHP-Libraries, node.js with [yarn](https://yarnpkg.com/en/docs) to manage JS-Libraries for frontend and [deployer.php](https://deployer.org/docs) to deploy your porject on your server.
 
-Supprted PHP-Versions:
+Supported PHP-Versions:
 - 7.1
 - 7.2
 - 7.3
