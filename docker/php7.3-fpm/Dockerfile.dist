@@ -1,4 +1,4 @@
-FROM php:7.2-fpm
+FROM php:7.3-fpm
 ARG TIMEZONE
 ARG XDEBUG_REMOTE_HOST
 
@@ -18,11 +18,13 @@ RUN apt-get update && apt-get install -y \
     libpng-dev \
     make \
     libav-tools \
+    libzip-dev \
     gnupg \
     nodejs
 
 # Install Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+#RUN composer global require hirak/prestissimo
 RUN composer --version
 
 # Set timezone
@@ -40,12 +42,9 @@ RUN docker-php-ext-install -j$(nproc) iconv mbstring exif zip opcache pcntl \
     && docker-php-ext-configure intl \
     && docker-php-ext-install intl
 
-RUN pecl install mcrypt-1.0.1 \
-    && docker-php-ext-enable mcrypt
-
 
 # install xdebug
-RUN pecl install xdebug
+RUN pecl install xdebug-beta
 RUN docker-php-ext-enable xdebug
 RUN echo "error_reporting=E_ALL" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
 RUN echo "display_startup_errors=On" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
