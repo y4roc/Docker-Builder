@@ -5,7 +5,7 @@ This docker configuration is designed for webapps based on PHP. It's includes [c
 Supported PHP-Versions:
 - 7.1
 - 7.2
-- 7.3
+- 7.3 (without xDebug)
 
 ## Required
 
