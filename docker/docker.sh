@@ -30,7 +30,7 @@ prepareFiles () {
     NGINX="./nginx"
 
     if [ ! -e ./.env ]; then
-        cp ..env.dist ./.env
+        cp ./.env.dist ./.env
     fi
 
     for folder in $FOLDERS; do
