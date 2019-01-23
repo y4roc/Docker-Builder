@@ -1,6 +1,6 @@
 # Docker Builder
 
-This docker configuration is designed for webapps based on PHP. It's includes composer to manage PHP-Libraries, node.js with yarn to manage JS-Libraries for frontend and deployer.php to deploy your porject on your server.
+This docker configuration is designed for webapps based on PHP. It's includes [composer](https://getcomposer.org/doc/) to manage PHP-Libraries, node.js with [yarn](https://yarnpkg.com/en/docs) to manage JS-Libraries for frontend and [deployer.php](https://deployer.org/docs) to deploy your porject on your server.
 
 ## Required
 
@@ -20,6 +20,7 @@ _Optional:_
 3. Choose your favorite PHP-Version in row three at the same file.
 4. Remove unused nginx-configs (`*.dist`) from `/docker/nginx/`.
 5. To start this docker-container go in the folder `docker` and run `./docker.sh -l`. The Argument `-l` logged you in this container.
+6. Run `composer` for to install your favourite framework & libraries
 
 ## Open new Terminal
 
