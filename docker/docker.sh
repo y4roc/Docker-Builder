@@ -72,11 +72,13 @@ prepareFiles () {
     sed "s/\$HOST_IP/$host_ip/g" ./.env.dist> ./.env
     source ./.env
 
+    cat ./docker-compose.yml
     sed "s/\$PROJECT/$PROJECT/g" ./docker-compose.yml.dist > ./docker-compose.yml
     sed "s/\$PROJECT/$PROJECT/g" ./docker-compose-dev.yml.dist > ./docker-compose-dev.yml
     sed "s/\$PROJECT/$PROJECT/g" ./docker-sync.yml.dist > ./docker-sync.yml
     sed -i "s/\$PHP/$PHP/g" ./docker-compose.yml
     sed -i "s/\$PHP/$PHP/g" ./docker-compose-dev.yml
+    cat ./docker-compose.yml
 
     if [ -f "$NGINX/default.conf.dist" ]; then
         sed "s/\$PROJECT/$PROJECT/g" ./nginx/default.conf.dist > ./nginx/default.conf
@@ -107,8 +109,6 @@ source ./.env
 if [ $force = true ]; then
     docker stop $(docker ps -a -q) && docker rm $(docker ps -a -q)
 fi
-
-cat ./docker-compose.yml
 
 ##build and launch containers
 docker-compose build
