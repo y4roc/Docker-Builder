@@ -1,4 +1,4 @@
-# Docker Builder
+# Docker Builder [![Travis](https://img.shields.io/travis/thhan/docker-builder.svg?style=flat-square)](https://travis-ci.org/thhan/docker-builder)
 
 This docker configuration is designed for webapps based on PHP. It's includes [composer](https://getcomposer.org/doc/) to manage PHP-Libraries, node.js with [yarn](https://yarnpkg.com/en/docs) to manage JS-Libraries for frontend and [deployer.php](https://deployer.org/docs) to deploy your porject on your server.
 
