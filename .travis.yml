@@ -10,7 +10,7 @@ services:
 
 before_script:
     - sudo sysctl -w vm.max_map_count=262144
-    - sed cp docker/.env.dist docker/.env
+    - cp docker/.env.dist docker/.env
     - sed -i "s/7.1/$PHP/g" docker/.env
     - cat docker/.env.dist
     - sed -i "/\- ..\/sql:\/var\/lib\/mysql/d" docker/docker-compose.yml.dist
