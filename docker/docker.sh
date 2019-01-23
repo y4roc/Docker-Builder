@@ -67,8 +67,8 @@ prepareFiles () {
         sed "s/\$USER_ID/33/g" ./nginx/Dockerfile.dist > ./nginx/Dockerfile
     fi
 
-    sed -i '' "s/\$HOST_IP/$host_ip/g" ./php7.1-fpm/Dockerfile
-    sed -i '' "s/\$HOST_IP/$host_ip/g" ./php7.2-fpm/Dockerfile
+    sed -i "s/\$HOST_IP/$host_ip/g" ./php7.1-fpm/Dockerfile
+    sed -i "s/\$HOST_IP/$host_ip/g" ./php7.2-fpm/Dockerfile
     sed "s/\$HOST_IP/$host_ip/g" ./.env.dist> ./.env
     source ./.env
 
