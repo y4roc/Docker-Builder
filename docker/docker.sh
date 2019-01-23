@@ -72,10 +72,11 @@ prepareFiles () {
     sed "s/\$HOST_IP/$host_ip/g" ./.env.dist> ./.env
     source ./.env
 
-    cat ./docker-compose.yml
+    cat ./docker-compose.yml.dist
     sed "s/\$PROJECT/$PROJECT/g" ./docker-compose.yml.dist > ./docker-compose.yml
     sed "s/\$PROJECT/$PROJECT/g" ./docker-compose-dev.yml.dist > ./docker-compose-dev.yml
     sed "s/\$PROJECT/$PROJECT/g" ./docker-sync.yml.dist > ./docker-sync.yml
+    cat ./docker-compose.yml
     sed -i "s/\$PHP/$PHP/g" ./docker-compose.yml
     sed -i "s/\$PHP/$PHP/g" ./docker-compose-dev.yml
     cat ./docker-compose.yml
