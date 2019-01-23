@@ -30,7 +30,7 @@ prepareFiles () {
     NGINX="./nginx"
 
     if [ ! -e ./.env ]; then
-        cp ..env.dist ./.env
+        cp ./.env.dist ./.env
     fi
 
     for folder in $FOLDERS; do
@@ -67,14 +67,16 @@ prepareFiles () {
         sed "s/\$USER_ID/33/g" ./nginx/Dockerfile.dist > ./nginx/Dockerfile
     fi
 
-    sed -i '' "s/\$HOST_IP/$host_ip/g" ./php7.1-fpm/Dockerfile
-    sed -i '' "s/\$HOST_IP/$host_ip/g" ./php7.2-fpm/Dockerfile
+    sed -i "s/\$HOST_IP/$host_ip/g" ./php7.1-fpm/Dockerfile
+    sed -i "s/\$HOST_IP/$host_ip/g" ./php7.2-fpm/Dockerfile
     sed "s/\$HOST_IP/$host_ip/g" ./.env.dist> ./.env
     source ./.env
 
     sed "s/\$PROJECT/$PROJECT/g" ./docker-compose.yml.dist > ./docker-compose.yml
     sed "s/\$PROJECT/$PROJECT/g" ./docker-compose-dev.yml.dist > ./docker-compose-dev.yml
     sed "s/\$PROJECT/$PROJECT/g" ./docker-sync.yml.dist > ./docker-sync.yml
+    sed -i "s/\$PHP/$PHP/g" ./docker-compose.yml
+    sed -i "s/\$PHP/$PHP/g" ./docker-compose-dev.yml
 
     if [ -f "$NGINX/default.conf.dist" ]; then
         sed "s/\$PROJECT/$PROJECT/g" ./nginx/default.conf.dist > ./nginx/default.conf
