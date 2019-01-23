@@ -11,17 +11,17 @@ services:
 before_script:
     - sudo sysctl -w vm.max_map_count=262144
     - cp docker/.env.dist docker/.env
-    - echo $PHP
     - sed -i "s/7.1/$PHP/g" docker/.env
+    - cat docker/.env
     - sed -i "/\- ..\/sql:\/var\/lib\/mysql/d" docker/docker-compose.yml.dist
     - sed -i "s/.\/logs\/nginx\//\/tmp\/nginx/g" docker/docker-compose.yml.dist
     - cd docker
     - bash ./docker.sh -d
     - docker exec -i -u www-data np_php bash -c "cd ../; rm -rf www; composer create-project symfony/website-skeleton www"
-    - docker-compose stop
-    - rm nginx/default.conf.dist nginx/silverstripe4.conf.dist
-    - bash ./docker.sh -d
     - docker exec -i -u www-data np_php bash -c "composer require encore"
+    - docker-compose stop
+    - rm nginx/default.conf.dist nginx/silverstripe4.conf.dist nginx/symfony3.conf.dist
+    - bash ./docker.sh -d
 
 script:
     - docker exec -i -u www-data np_php bash -c "php bin/phpunit"
