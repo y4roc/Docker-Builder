@@ -58,11 +58,15 @@ prepareFiles () {
     esac
 
     if ! hash docker-sync 2>/dev/null; then
+        sed "s/\$USER_ID/$uid/g" ./php5.4-fpm/Dockerfile.dist > ./php5.4-fpm/Dockerfile
+        sed "s/\$USER_ID/$uid/g" ./php5.6-fpm/Dockerfile.dist > ./php5.6-fpm/Dockerfile
         sed "s/\$USER_ID/$uid/g" ./php7.1-fpm/Dockerfile.dist > ./php7.1-fpm/Dockerfile
         sed "s/\$USER_ID/$uid/g" ./php7.2-fpm/Dockerfile.dist > ./php7.2-fpm/Dockerfile
         sed "s/\$USER_ID/$uid/g" ./php7.3-fpm/Dockerfile.dist > ./php7.3-fpm/Dockerfile
         sed "s/\$USER_ID/$uid/g" ./nginx/Dockerfile.dist > ./nginx/Dockerfile
     else
+        sed "s/\$USER_ID/33/g" ./php5.4-fpm/Dockerfile.dist > ./php5.4-fpm/Dockerfile
+        sed "s/\$USER_ID/33/g" ./php5.6-fpm/Dockerfile.dist > ./php5.6-fpm/Dockerfile
         sed "s/\$USER_ID/33/g" ./php7.1-fpm/Dockerfile.dist > ./php7.1-fpm/Dockerfile
         sed "s/\$USER_ID/33/g" ./php7.2-fpm/Dockerfile.dist > ./php7.2-fpm/Dockerfile
         sed "s/\$USER_ID/33/g" ./php7.3-fpm/Dockerfile.dist > ./php7.3-fpm/Dockerfile
@@ -70,13 +74,11 @@ prepareFiles () {
     fi
 
     sed "s/\$HOST_IP/$host_ip/g" ./.env.dist> ./.env
-    source ./.env
+    source .env
 
     sed "s/\$PROJECT/$PROJECT/g" ./docker-compose.yml.dist > ./docker-compose.yml
     sed "s/\$PROJECT/$PROJECT/g" ./docker-compose-dev.yml.dist > ./docker-compose-dev.yml
     sed "s/\$PROJECT/$PROJECT/g" ./docker-sync.yml.dist > ./docker-sync.yml
-    sed -i "s/\$PHP/$PHP/g" ./docker-compose.yml
-    sed -i "s/\$PHP/$PHP/g" ./docker-compose-dev.yml
 
     if [ -f "$NGINX/default.conf.dist" ]; then
         sed "s/\$PROJECT/$PROJECT/g" ./nginx/default.conf.dist > ./nginx/default.conf
@@ -101,7 +103,7 @@ prepareFiles () {
 
 prepareFiles
 
-source ./.env
+source .env
 
 ##force stop and destroy containers
 if [ $force = true ]; then
